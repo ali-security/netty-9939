@@ -24,6 +24,7 @@
   </parent>
 
   <artifactId>netty-codec-http</artifactId>
+  <version>4.1.97.Final+sp1</version>
   <packaging>jar</packaging>
 
   <name>Netty/Codec/HTTP</name>
@@ -36,27 +37,27 @@
     <dependency>
       <groupId>${project.groupId}</groupId>
       <artifactId>netty-common</artifactId>
-      <version>${project.version}</version>
+      <version>4.1.97.Final</version>
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
       <artifactId>netty-buffer</artifactId>
-      <version>${project.version}</version>
+      <version>4.1.97.Final</version>
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
       <artifactId>netty-transport</artifactId>
-      <version>${project.version}</version>
+      <version>4.1.97.Final</version>
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
       <artifactId>netty-codec</artifactId>
-      <version>${project.version}</version>
+      <version>4.1.97.Final</version>
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
       <artifactId>netty-handler</artifactId>
-      <version>${project.version}</version>
+      <version>4.1.97.Final</version>
     </dependency>
     <dependency>
       <groupId>com.jcraft</groupId>
@@ -119,7 +120,7 @@
     <dependency>
       <groupId>${project.groupId}</groupId>
       <artifactId>netty-transport</artifactId>
-      <version>${project.version}</version>
+      <version>4.1.97.Final</version>
       <type>test-jar</type>
       <scope>test</scope>
     </dependency>

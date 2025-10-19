@@ -17,7 +17,7 @@ name: Build project
 
 on:
   push:
-    branches: [ "main"]
+    branches: [ "main", "4.2"]
 
   schedule:
     - cron: '30 1 * * 1'  # At 01:30 on Monday, every Monday.
@@ -35,11 +35,14 @@ jobs:
   build:
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
         include:
           - setup: linux-x86_64-java11
             docker-compose-build: "-f docker/docker-compose.yaml -f docker/docker-compose.centos-6.111.yaml build"
-            docker-compose-run: "-f docker/docker-compose.yaml -f docker/docker-compose.centos-6.111.yaml run build"
+            # Bind a host directory to /code in the container to extract built jar files from all modules
+            # This will allow us to access the built jars after the docker-compose run
+            docker-compose-run: "-f docker/docker-compose.yaml -f docker/docker-compose.centos-6.111.yaml run -v ${{ github.workspace }}/extracted-jars:/extracted-jars build"
 
     name: ${{ matrix.setup }}
     steps:
@@ -81,9 +84,7 @@ jobs:
         if: cancelled()
 
       - uses: actions/upload-artifact@v3
-        if: ${{ failure() }}
         with:
           name: target
           path: |
-            **/target/surefire-reports/
-            **/hs_err*.log
+            /extracted-jars/**/*.jar
