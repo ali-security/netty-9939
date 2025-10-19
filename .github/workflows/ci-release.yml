@@ -69,7 +69,7 @@ jobs:
         run: ./.github/scripts/release_checkout_tag.sh release.properties
 
       - name: Upload workspace
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: prepare-release-workspace
           path: ${{ github.workspace }}/**
@@ -91,7 +91,7 @@ jobs:
 
     steps:
       - name: Download release-workspace
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: prepare-release-workspace
           path: ./prepare-release-workspace/
@@ -160,7 +160,7 @@ jobs:
         run: docker-compose ${{ matrix.docker-compose-run }}
 
       - name: Upload local staging directory
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: ${{ matrix.setup }}-local-staging
           path: ~/local-staging
@@ -178,7 +178,7 @@ jobs:
     needs: stage-release-linux
     steps:
       - name: Download release-workspace
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: prepare-release-workspace
           path: ./prepare-release-workspace/
@@ -206,13 +206,13 @@ jobs:
       # Hardcode the staging artifacts that need to be downloaded.
       # These must match the matrix setups. There is currently no way to pull this out of the config.
       - name: Download linux-aarch64 staging directory
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: linux-aarch64-local-staging
           path: ~/linux-aarch64-local-staging
 
       - name: Download linux-x86_64-java8 staging directory
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: linux-x86_64-java8-local-staging
           path: ~/linux-x86_64-java8-local-staging
